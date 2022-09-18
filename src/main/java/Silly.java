@@ -78,10 +78,16 @@ public class Silly implements Comparable<Silly>{
      *       Afterwards, set this.name to the concatenation of both
      *       strings (e.g. this.name = [first string] + [second string]).
      *       Make sure you document this method!
+     * <p>
+     * Creates a new Silly object.
+     * This constructor takes in two string arguments.
+     *
+     * @param s1 the first string
+     * @param s2 the second string
      */
-
-
-
+    public Silly(String s1, String s2){
+        this.name = s1 + s2;
+    }
 
 
     public static void main(String[] args) {
@@ -106,17 +112,17 @@ public class Silly implements Comparable<Silly>{
         Silly x = new Silly("something");
         Silly y = new Silly("something else");
 
-        /**
-         * TODO (Task 2): Below are a bunch of calls to countStatic using
-         *                two different instances of Silly.
-         *                Fill out the expected_values array with the
-         *                values that countStatic will return at each call.
+        /*
+          TODO (Task 2): Below are a bunch of calls to countStatic using
+                         two different instances of Silly.
+                         Fill out the expected_values array with the
+                         values that countStatic will return at each call.
          */
         x.countStatic();
         y.countStatic();
         x.countStatic();
         x.countStatic();
-        int[] expected_values = {};
+        int[] expected_values = {0, 1, 2, 3};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -134,6 +140,7 @@ public class Silly implements Comparable<Silly>{
     @Override
     public String toString(){
         // TODO (Task 3): Implement the body of this method!
+        return this.name;
     }
 
     /**
@@ -148,10 +155,10 @@ public class Silly implements Comparable<Silly>{
      */
     @Override
     public boolean equals(Object o) {
-        /**
-         * TODO (Task 4): Complete the body of this method!
-         *                We've started it by checking the type of o for you.
-         *                You just need to return true if the names are equal.
+        /*
+          TODO (Task 4): Complete the body of this method!
+                         We've started it by checking the type of o for you.
+                         You just need to return true if the names are equal.
          */
         if (!(o instanceof Silly)){
             return false;
@@ -161,6 +168,7 @@ public class Silly implements Comparable<Silly>{
 
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
+        return this.name.equals(((Silly) o).name);
     }
 
     /**
@@ -185,15 +193,22 @@ public class Silly implements Comparable<Silly>{
      */
     @Override
     public int compareTo(Silly other) {
-        /**
-         * TODO (Task 5): Implement the body of this method.
-         *                A positive number should be returned if this.name
-         *                is longer than other.name, a negative number if
-         *                other.name is longer than this.name, and 0 if
-         *                the lengths are equal.
-         *                You can get the length of a string by using the
-         *                .length() method.
+        /*
+          TODO (Task 5): Implement the body of this method.
+                         A positive number should be returned if this.name
+                         is longer than other.name, a negative number if
+                         other.name is longer than this.name, and 0 if
+                         the lengths are equal.
+                         You can get the length of a string by using the
+                         .length() method.
          */
+        if (this.name.length() < other.name.length()) {
+            return -1;
+        } else if (this.name.length() > other.name.length()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /*
